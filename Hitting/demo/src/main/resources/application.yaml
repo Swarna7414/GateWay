@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: Three
+
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka
+  instance:
+    prefer-ip-address: true
