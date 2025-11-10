@@ -8,20 +8,20 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-    @Bean("oneWebClient")
-    public WebClient oneWebClient(){
-        return WebClient.builder().baseUrl("http://ONE/one").build();
-    }
-
-    @Bean("twoWebClient")
-    public WebClient twoWebClient(){
-        return WebClient.builder().baseUrl("http://TWO/second").build();
-    }
-
     @Bean
     @LoadBalanced
     public WebClient.Builder lbWebClientBuilder(){
         return WebClient.builder();
+    }
+
+    @Bean("oneWebClient")
+    public WebClient oneWebClient(WebClient.Builder lbWebClientBuilder){
+        return WebClient.builder().baseUrl("http://ONE/one").build();
+    }
+
+    @Bean("twoWebClient")
+    public WebClient twoWebClient(WebClient.Builder lbWebClientBuilder){
+        return WebClient.builder().baseUrl("http://TWO/second").build();
     }
 
 }
